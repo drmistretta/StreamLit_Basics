@@ -13,12 +13,14 @@ st.caption(f"Last updated: {date.today().isoformat()} • Deployed from GitHub (
 # ────────────────────────────────────────────────────────────────────────────────
 st.header("1) A Brief History of Streamlit")
 st.markdown("""
-- **Founders:** Adrien Treuille, Amanda Kelly, Thiago Teixeira.
-- **Founded:** **2018** (public momentum in 2019).
-- **Acquired by Snowflake:** **March 2, 2022** (Streamlit continues as the open-source Python framework for data apps).
-- **What it is:** A Python framework that turns scripts into interactive web apps with minimal boilerplate.
-- **Good for educators:** Rapid prototyping of classroom tools (dashboards, simulations, ML demos) without front-end heavy lifting.
+Streamlit was founded in 2018 by Adrien Treuille, Amanda Kelly, and Thiago Teixeira, with public momentum growing in 2019. 
+On March 2, 2022, the company was acquired by Snowflake, though it continues as an open-source Python framework that enables 
+developers to transform scripts into interactive web applications with minimal boilerplate. For educators, Streamlit is 
+especially valuable for rapidly prototyping classroom tools such as dashboards, simulations, and machine learning 
+demonstrations without the need for extensive front-end development.
+""")
 
+st.markdown("""
 **References (docs & announcements)**
 - Streamlit architecture & execution model (client–server + reruns): https://docs.streamlit.io/develop/concepts/architecture/architecture  
 - Founding noted by Streamlit blog/company materials (2018/2019): https://blog.streamlit.io/announcing-streamlits-21m-series-a/  
