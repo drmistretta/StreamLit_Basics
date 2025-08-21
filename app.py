@@ -63,10 +63,11 @@ st.header("4) Server/host side: rendering for all devices")
 st.markdown("""
 The “server” is the computer that actually runs your Streamlit app’s Python code. Think of it as the engine behind the
 scenes. Every time a user interacts with the app, the server re-runs the script from top to bottom, quickly updates
-the results, and then sends those updates back to the client (the user’s browser). This setup makes it possible for
-many people on different devices—laptops, tablets, or phones—to use the same app at once. You can run the server on
-your own computer for testing, or host it in the cloud (like Streamlit Community Cloud or Snowflake) so anyone with
-the link can access it.
+the results, and then sends those updates back to the client (the user’s browser). To make apps faster, Streamlit uses
+**caching**, which means it can remember the results of expensive calculations or data loading so it doesn’t have to
+repeat the same work every time. This setup makes it possible for many people on different devices—laptops, tablets,
+or phones—to use the same app at once. You can run the server on your own computer for testing, or host it in the
+cloud (like Streamlit Community Cloud or Snowflake) so anyone with the link can access it.
 """)
 
 
