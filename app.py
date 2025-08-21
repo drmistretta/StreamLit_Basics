@@ -74,26 +74,70 @@ cloud (like Streamlit Community Cloud or Snowflake) so anyone with the link can 
 """)
 
 
-# ────────────────────────────────────────────────────────────────────────────────
-# 5) Cloud services
-# ────────────────────────────────────────────────────────────────────────────────
-st.header("5) Common cloud data options (with free tiers where available)")
-st.markdown("""
-> Prices vary by **region**, **storage class/tier**, **API operations**, and **egress**. Values here reflect commonly cited headline rates as of **Aug 2025**; always check the provider page for your region and workload details.
-""")
+# ------------------------
+# 5) Cloud services for storing & retrieving data (prices/month)
+# ------------------------
+st.header("5) Cloud services for storing & retrieving data")
 
-rows = [
-    # ... (your existing cloud services table here)
+st.markdown("> **Note:** Storage/database prices vary by region, usage, operations, and egress. Values below are common headline rates as of **Aug 2025** (check provider pages for your region).")
+
+data = [
+    {
+        "Service": "Amazon S3 (object storage)",
+        "Typical Pricing / Month": "S3 Standard: ~$0.023/GB-mo (first 50TB); Free Tier 5GB for first 12 months",
+        "Free Tier?": "Yes (12-month 5GB)",
+        "Reference": "[AWS S3 pricing](https://aws.amazon.com/s3/pricing/); guide: [CloudZero 2025](https://www.cloudzero.com/blog/s3-pricing/); free-tier note: [nOps 2025](https://www.nops.io/blog/how-much-do-aws-s3-storage-classes-cost/)"
+    },
+    {
+        "Service": "Google Cloud Storage (object storage)",
+        "Typical Pricing / Month": "US regions commonly ~$0.02–$0.026/GB-mo (class & region vary)",
+        "Free Tier?": "Limited credits for new accounts; pay-as-you-go",
+        "Reference": "[GCS pricing](https://cloud.google.com/storage/pricing) & [pricing examples](https://cloud.google.com/storage/pricing-examples)"
+    },
+    {
+        "Service": "Azure Blob Storage (object storage)",
+        "Typical Pricing / Month": "Hot LRS: ~**$0.018/GB-mo** (first 50TB) in many regions",
+        "Free Tier?": "No permanent free tier",
+        "Reference": "Azure page: https://azure.microsoft.com/en-us/pricing/details/storage/blobs/ ; overview: https://www.cloudzero.com/blog/azure-blob-storage-pricing/"
+    },
+    {
+        "Service": "Supabase (Postgres + auth + storage)",
+        "Typical Pricing / Month": "Free tier; paid from **$10/mo** (project); usage-based beyond",
+        "Free Tier?": "Yes",
+        "Reference": "https://supabase.com/pricing ; 2025 breakdown: https://uibakery.io/blog/supabase-pricing"
+    },
+    {
+        "Service": "Firebase (Firestore + Storage via GCS)",
+        "Typical Pricing / Month": "**Spark** plan free; **Blaze** pay-as-you-go (GCP rates apply)",
+        "Free Tier?": "Yes (Spark)",
+        "Reference": "Plans: https://firebase.google.com/docs/projects/billing/firebase-pricing-plans ; Pricing: https://firebase.google.com/pricing"
+    },
+    {
+        "Service": "MongoDB Atlas (managed MongoDB)",
+        "Typical Pricing / Month": "Free **M0**; paid shared from **~$9/mo**; serverless op-based",
+        "Free Tier?": "Yes (M0)",
+        "Reference": "https://www.mongodb.com/pricing ; AWS page: https://www.mongodb.com/products/platform/atlas-cloud-providers/aws/pricing"
+    },
+    {
+        "Service": "Neon (managed Postgres)",
+        "Typical Pricing / Month": "**Free** plan $0; paid plans from **$5/mo min fee** + usage",
+        "Free Tier?": "Yes",
+        "Reference": "Pricing: https://neon.com/pricing ; Plan details: https://neon.com/docs/introduction/plans"
+    },
+    {
+        "Service": "Airtable (cloud spreadsheet/DB)",
+        "Typical Pricing / Month": "Free tier; paid typically **$20–$24 per user/mo** (annual); Business ~$45/user/mo (annual)",
+        "Free Tier?": "Yes",
+        "Reference": "https://airtable.com/pricing ; Docs: https://support.airtable.com/docs/airtable-plans"
+    },
+    {
+        "Service": "Google Sheets (via Google Workspace)",
+        "Typical Pricing / Month": "Business Standard **$14 per user/mo** (annual pricing varies)",
+        "Free Tier?": "No permanent free plan (except Workspace trials)",
+        "Reference": "https://workspace.google.com/pricing ; plan page: https://workspace.google.com/individual/"
+    },
 ]
-st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
-st.divider()
-st.subheader("Deployment notes for your course (GitHub → Streamlit Community Cloud)")
-st.markdown("""
-- Put your code in a public GitHub repo with `requirements.txt`.
-- On **Streamlit Community Cloud**, connect your GitHub, pick the repo/branch, and set the **main file path** (e.g., `streamlit_app.py`).
-- For secrets (API keys, DB URLs), use the platform’s **Secrets** UI—never commit secrets to Git.
-- For private/enterprise needs and governed data, consider **Streamlit in Snowflake**.
-""")
-
+df = pd.DataFrame(data)
+st.dataframe(df, use_container_width=True)
 # End
