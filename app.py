@@ -21,11 +21,15 @@ demonstrations without the need for extensive front-end development.
 """)
 
 st.markdown("""
-**References (docs & announcements)**
-- Streamlit architecture & execution model (client–server + reruns): https://docs.streamlit.io/develop/concepts/architecture/architecture  
-- Founding noted by Streamlit blog/company materials (2018/2019): https://blog.streamlit.io/announcing-streamlits-21m-series-a/  
-- Snowflake acquisition announcement (Mar 2, 2022): https://www.snowflake.com/en/news/press-releases/snowflake-announces-intent-to-acquire-streamlit-to-empower-developers-and-data-scientists-to-mobilize-the-worlds-data/  
+**References**
+
+Streamlit. (n.d.). *Architecture overview: Client–server execution model*. Streamlit Documentation. Retrieved August 21, 2025, from https://docs.streamlit.io/develop/concepts/architecture/architecture  
+
+Streamlit. (2020, October 1). *Announcing Streamlit’s $21M Series A*. Streamlit Blog. Retrieved August 21, 2025, from https://blog.streamlit.io/announcing-streamlits-21m-series-a/  
+
+Snowflake. (2022, March 2). *Snowflake announces intent to acquire Streamlit to empower developers and data scientists to mobilize the world’s data*. Snowflake Press Release. Retrieved August 21, 2025, from https://www.snowflake.com/en/news/press-releases/snowflake-announces-intent-to-acquire-streamlit-to-empower-developers-and-data-scientists-to-mobilize-the-worlds-data/  
 """)
+
 
 # ────────────────────────────────────────────────────────────────────────────────
 # 2) What popular web applications use Streamlit?
