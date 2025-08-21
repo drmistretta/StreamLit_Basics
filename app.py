@@ -45,17 +45,15 @@ st.markdown("""
 *Teaching tip:* For K–12 PD, pick 2–3 gallery apps aligned to your cohort (e.g., image classification demos, classroom analytics) and walk through the code → widget → rerun cycle.
 """)
 
-# ────────────────────────────────────────────────────────────────────────────────
-# 3) Client side: laptops, tablets, and phones
-# ────────────────────────────────────────────────────────────────────────────────
 st.header("3) Client side: laptops, tablets, and phones")
 st.markdown("""
 When you use Streamlit on a laptop, tablet, or phone, it works through the web browser. The browser is the “client,”
 which means it shows the app’s visuals. The Python code, however, runs somewhere else (on the “server”). Whenever you
 move a slider, click a button, or change a widget, the app’s code is re-run on the server and the updated results are
 sent back to your browser almost instantly. Streamlit supports the latest versions of browsers like Chrome, Firefox,
-Edge, and Safari. The layout adjusts to different screen sizes, so it works well on mobile devices, though very wide
-tables or charts may need small adjustments to display neatly.
+Edge, and Safari. The layout is designed to be **responsive**, meaning it automatically changes how the information is
+arranged and displayed based on the size and type of device you are using. This makes Streamlit work well on mobile
+devices, though very wide tables or charts may still need small adjustments to display neatly.
 """)
 
 # ────────────────────────────────────────────────────────────────────────────────
