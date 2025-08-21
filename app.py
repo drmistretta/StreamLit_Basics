@@ -46,35 +46,31 @@ st.markdown("""
 """)
 
 # ────────────────────────────────────────────────────────────────────────────────
-# 3) How Streamlit works on the client side
+# 3) Client side: laptops, tablets, and phones
 # ────────────────────────────────────────────────────────────────────────────────
 st.header("3) Client side: laptops, tablets, and phones")
 st.markdown("""
-- **Runs in the browser** (React front-end). Your Python script executes on a server; the browser renders results.
-- **Interaction model:** Any widget change triggers a **script re-execution**; updated elements are sent to the browser.
-- **Supported browsers:** Latest two versions of Chrome, Firefox, Edge, Safari.
-- **Mobile/tablets:** Layout is responsive; very wide tables/plots may still need layout tweaks (e.g., `st.columns`, `use_container_width=True`).
-
-**References**
-- Client–server & rerun model: https://docs.streamlit.io/develop/concepts/architecture/architecture  
-- `st.rerun()` API (how reruns happen): https://docs.streamlit.io/develop/api-reference/execution-flow/st.rerun  
-- Supported browsers: https://docs.streamlit.io/knowledge-base/using-streamlit/supported-browsers  
+When you use Streamlit on a laptop, tablet, or phone, it works through the web browser. The browser is the “client,”
+which means it shows the app’s visuals. The Python code, however, runs somewhere else (on the “server”). Whenever you
+move a slider, click a button, or change a widget, the app’s code is re-run on the server and the updated results are
+sent back to your browser almost instantly. Streamlit supports the latest versions of browsers like Chrome, Firefox,
+Edge, and Safari. The layout adjusts to different screen sizes, so it works well on mobile devices, though very wide
+tables or charts may need small adjustments to display neatly.
 """)
 
 # ────────────────────────────────────────────────────────────────────────────────
-# 4) How Streamlit works on the server/host side
+# 4) Server/host side: rendering for all devices
 # ────────────────────────────────────────────────────────────────────────────────
 st.header("4) Server/host side: rendering for all devices")
 st.markdown("""
-- **Server = Python process** running your app (locally, a VM/container, Streamlit Community Cloud, or **Streamlit in Snowflake**).
-- **Rerun pipeline:** On each user interaction, the server reruns the script (top→bottom), uses caching where declared, and streams a UI **diff** to the client.
-- **Deploy from GitHub:** Push your repo and connect; Streamlit Community Cloud builds the environment from `requirements.txt`.
-- **Enterprise path:** Run **Streamlit in Snowflake** for governed, private apps near your data.
-
-**References**
-- Architecture & execution model: https://docs.streamlit.io/develop/concepts/architecture/architecture  
-- Streamlit in Snowflake: https://www.snowflake.com/en/product/features/streamlit-in-snowflake/  
+The “server” is the computer that actually runs your Streamlit app’s Python code. Think of it as the engine behind the
+scenes. Every time a user interacts with the app, the server re-runs the script from top to bottom, quickly updates
+the results, and then sends those updates back to the client (the user’s browser). This setup makes it possible for
+many people on different devices—laptops, tablets, or phones—to use the same app at once. You can run the server on
+your own computer for testing, or host it in the cloud (like Streamlit Community Cloud or Snowflake) so anyone with
+the link can access it.
 """)
+
 
 with st.expander("Optional: tiny live demo to illustrate reruns"):
     val = st.slider("Move me to trigger a rerun", 0, 100, 25)
