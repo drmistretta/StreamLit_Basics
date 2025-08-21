@@ -73,36 +73,6 @@ or phones—to use the same app at once. You can run the server on your own comp
 cloud (like Streamlit Community Cloud or Snowflake) so anyone with the link can access it.
 """)
 
-with st.expander("Optional: tiny live demo to illustrate reruns"):
-    val = st.slider("Move me to trigger a rerun", 0, 100, 25)
-    st.write(f"Reruns feel instantaneous—current slider value: **{val}**")
-
-# NEW ─────────────────────────────────────────────────────────────────────────────
-# Live demo: Caching dataset loading (with timer)
-# ────────────────────────────────────────────────────────────────────────────────
-st.subheader("Caching Demo: Loading a Dataset (with timer)")
-
-@st.cache_data
-def load_dataset(n_rows: int = 5):
-    """Simulate a slow dataset load, but cache results for faster repeat access."""
-    time.sleep(3)  # simulate slow loading
-    data = pd.DataFrame({
-        "Number": range(1, n_rows + 1),
-        "Square": [x**2 for x in range(1, n_rows + 1)]
-    })
-    return data
-
-rows = st.slider("How many rows to load?", 5, 50, 5)
-
-t0 = time.perf_counter()
-with st.spinner("Loading dataset... (cached after first load)"):
-    df = load_dataset(rows)
-elapsed = time.perf_counter() - t0
-
-cached_hint = "✅ Likely **CACHED**" if elapsed < 1.0 else "🕒 **FRESH** (not cached yet)"
-st.success(f"Done in {elapsed:.3f} seconds — {cached_hint}")
-st.dataframe(df, use_container_width=True)
-st.metric(label="Elapsed load time (s)", value=f"{elapsed:.3f}")
 
 # ────────────────────────────────────────────────────────────────────────────────
 # 5) Cloud services
