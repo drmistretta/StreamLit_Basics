@@ -7,7 +7,7 @@ import time   # NEW import for caching demo
 st.set_page_config(page_title="Streamlit for Educators", layout="wide")
 
 st.title("Streamlit for Educators: Teaching Notes & Demos")
-st.caption(f"Last updated: {date.today().isoformat()} • Deployed from GitHub (recommended for your course).")
+st.caption(f"Last updated: {date.today().isoformat()} • Deployed from GitHub.")
 
 # ────────────────────────────────────────────────────────────────────────────────
 # 1) Brief History of Streamlit
