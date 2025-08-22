@@ -62,7 +62,6 @@ SRC_DEMO_SETUP = _img_data_uri(IMG_DEMO_SETUP)
 SRC_HANDS_ON   = _img_data_uri(IMG_HANDS_ON)
 SRC_ADAPTATION = _img_data_uri(IMG_ADAPTATION)
 
-# Simple CSS for drop-shadow image cards with hover effect
 st.markdown("""
 <style>
 .tile-wrap { text-align:center; }
@@ -73,12 +72,13 @@ st.markdown("""
   background: white;
 }
 .tile:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
-.tile img { width:100%; height:180px; object-fit:cover; display:block; }
+.tile img { width:auto; height:140px; margin:auto; display:block; object-fit:contain; }  /* <-- replace this line */
 .tile h4 { margin:10px 12px 6px; font-size:1.0rem; }
 .tile p  { margin:0 12px 14px; font-size:0.9rem; color:#555; }
 .caption { color:#6b7280; font-size:0.85rem; margin-top:6px; }
 </style>
 """, unsafe_allow_html=True)
+
 
 def tile(html_id: str, href: str, img_src: str, title: str, subtitle: str):
     st.markdown(
