@@ -32,18 +32,82 @@ Snowflake. (2022, March 2). *Snowflake announces intent to acquire Streamlit to 
 """)
 
 # ────────────────────────────────────────────────────────────────────────────────
-# 2) What popular web applications use Streamlit?
+# 2) Popular apps & showcases built with Streamlit (image tiles with links)
 # ────────────────────────────────────────────────────────────────────────────────
 st.header("2) Popular apps & showcases built with Streamlit")
-st.markdown("""
-- **Official Gallery:** Hundreds of public apps across ML, education, data viz, and science.  
-  - https://streamlit.io/gallery
-- **Case studies (production/internal):**
-  - **Delta Dental** (decision support): https://blog.streamlit.io/how-delta-dental-uses-streamlit-to-make-lightning-fast-decisions/
-  - **Open Insurance (Snowflake story)** (self-service data apps): https://www.snowflake.com/en/customers/all-customers/case-study/open-insurance/
 
-*Teaching tip:* For K–12 PD, pick 2–3 gallery apps aligned to your cohort (e.g., image classification demos, classroom analytics) and walk through the code → widget → rerun cycle.
-""")
+# -- URLs to open (new tab) --
+LINK_DEMO_SETUP = "https://just-merwan.medium.com/how-to-use-streamlit-webgui-with-ros-f7a17f966552"
+LINK_HANDS_ON = "https://www.ultralytics.com/blog/run-an-interactive-ai-app-with-streamlit-and-ultralytics-yolo11"
+LINK_ADAPTATION = "https://discuss.streamlit.io/t/how-to-build-an-llm-powered-chatbot-with-streamlit/42916"
+
+# -- Thumbnail images (replace with your own if preferred) --
+IMG_DEMO_SETUP = "https://miro.medium.com/v2/resize:fit:828/format:webp/1*J2Vg1QmXj1r3mW7vn8IY6A.png"
+IMG_HANDS_ON = "https://assets.ultralytics.com/blog/yolo-streamlit/cover.jpg"
+IMG_ADAPTATION = "https://user-images.githubusercontent.com/56193069/229269090-9f3a1b3e-983f-4b7a-8d64-5c0b7f1b0c24.png"
+
+# -- Simple CSS for drop-shadow image cards with hover effect --
+st.markdown("""
+<style>
+.tile-wrap { text-align:center; }
+.tile {
+  display:block; text-decoration:none; color:inherit; border-radius:18px; overflow:hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.tile:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
+.tile img { width:100%; height:180px; object-fit:cover; display:block; }
+.tile h4 { margin:10px 12px 6px; font-size:1.0rem; }
+.tile p  { margin:0 12px 14px; font-size:0.9rem; color:#555; }
+.caption { color:#6b7280; font-size:0.85rem; margin-top:6px; }
+</style>
+""", unsafe_allow_html=True)
+
+def tile(html_id: str, href: str, img: str, title: str, subtitle: str):
+    st.markdown(
+        f"""
+        <div class="tile-wrap" id="{html_id}">
+          <a class="tile" href="{href}" target="_blank" rel="noopener noreferrer">
+            <img src="{img}" alt="{title}">
+            <h4>{title}</h4>
+            <p>{subtitle}</p>
+          </a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+c1, c2, c3 = st.columns(3, gap="large")
+with c1:
+    tile(
+        "demo-setup",
+        LINK_DEMO_SETUP,
+        IMG_DEMO_SETUP,
+        "Demo Setup",
+        "Streamlit WebGUI for ROS — control & monitor robotics via a browser."
+    )
+    st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+
+with c2:
+    tile(
+        "hands-on",
+        LINK_HANDS_ON,
+        IMG_HANDS_ON,
+        "Hands-on Widget",
+        "YOLO11 live object detection — upload media and see detections instantly."
+    )
+    st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+
+with c3:
+    tile(
+        "adaptation",
+        LINK_ADAPTATION,
+        IMG_ADAPTATION,
+        "Adaptation Theme",
+        "LLM-powered chatbot blueprint — adapt as a coding/robotics helper."
+    )
+    st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+
 
 # ────────────────────────────────────────────────────────────────────────────────
 # 3) Client side
