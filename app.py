@@ -43,7 +43,7 @@ Snowflake. (2022, March 2). *Snowflake announces intent to acquire Streamlit to 
 """)
 
 # ────────────────────────────────────────────────────────────────────────────────
-# 2) Popular apps & showcases built with Streamlit (image tiles with links)
+# 2) Popular apps & showcases built with Streamlit (icon-first tiles)
 # ────────────────────────────────────────────────────────────────────────────────
 st.header("2) Popular apps & showcases built with Streamlit")
 
@@ -52,78 +52,105 @@ LINK_DEMO_SETUP = "https://just-merwan.medium.com/how-to-use-streamlit-webgui-wi
 LINK_HANDS_ON   = "https://www.ultralytics.com/blog/run-an-interactive-ai-app-with-streamlit-and-ultralytics-yolo11"
 LINK_ADAPTATION = "https://discuss.streamlit.io/t/how-to-build-an-llm-powered-chatbot-with-streamlit/42916"
 
-# Local thumbnails (committed to your repo under images/)
+# Local thumbnails committed to your repo
 IMG_DEMO_SETUP = "images/demo_setup.png"
 IMG_HANDS_ON   = "images/hands_on_widget.png"
 IMG_ADAPTATION = "images/adaptation_theme.png"
 
-# Convert local images → base64 data URIs (so they always render)
+# Convert local images → base64 data URIs (reliable on Streamlit Cloud)
 SRC_DEMO_SETUP = _img_data_uri(IMG_DEMO_SETUP)
 SRC_HANDS_ON   = _img_data_uri(IMG_HANDS_ON)
 SRC_ADAPTATION = _img_data_uri(IMG_ADAPTATION)
 
+# Clean, app-store style tiles: icon centered, title/subtitle underneath
 st.markdown("""
 <style>
-.tile-wrap { text-align:center; }
-.tile {
-  display:block; text-decoration:none; color:inherit; border-radius:18px; overflow:hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.tile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
   transition: transform 160ms ease, box-shadow 160ms ease;
-  background: white;
+  overflow: hidden;
+  text-decoration: none; color: inherit;
+  height: 100%;
 }
-.tile:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
-.tile img { width:auto; height:140px; margin:auto; display:block; object-fit:contain; }  /* <-- replace this line */
-.tile h4 { margin:10px 12px 6px; font-size:1.0rem; }
-.tile p  { margin:0 12px 14px; font-size:0.9rem; color:#555; }
-.caption { color:#6b7280; font-size:0.85rem; margin-top:6px; }
+.tile-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
+
+.tile-icon {
+  height: 160px;        /* icon area height */
+  display: flex;
+  align-items: center;  /* vertical center */
+  justify-content: center; /* horizontal center */
+  padding: 18px 16px 6px;
+  background: linear-gradient(0deg, #ffffff 0%, #f7f9ff 100%);
+}
+
+.tile-icon img {
+  max-width: 70%;       /* limit width so logos don’t overflow */
+  max-height: 100%;     /* contain within the icon band */
+  object-fit: contain;  /* NEVER crop */
+  display: block;
+}
+
+.tile-body { padding: 10px 16px 14px; text-align: center; }
+.tile-title { margin: 6px 0 4px; font-size: 1.05rem; font-weight: 700; }
+.tile-sub   { margin: 0; font-size: 0.92rem; color: #555; }
+.tile-note  { color:#6b7280; font-size:0.85rem; margin-top:6px; text-align:center; }
 </style>
 """, unsafe_allow_html=True)
-
 
 def tile(html_id: str, href: str, img_src: str, title: str, subtitle: str):
     st.markdown(
         f"""
-        <div class="tile-wrap" id="{html_id}">
-          <a class="tile" href="{href}" target="_blank" rel="noopener noreferrer">
+        <a id="{html_id}" class="tile-card" href="{href}" target="_blank" rel="noopener noreferrer">
+          <div class="tile-icon">
             <img src="{img_src}" alt="{title}">
-            <h4>{title}</h4>
-            <p>{subtitle}</p>
-          </a>
-        </div>
+          </div>
+          <div class="tile-body">
+            <div class="tile-title">{title}</div>
+            <p class="tile-sub">{subtitle}</p>
+          </div>
+        </a>
         """,
         unsafe_allow_html=True
     )
 
 c1, c2, c3 = st.columns(3, gap="large")
+
 with c1:
     tile(
         "demo-setup",
         LINK_DEMO_SETUP,
-        SRC_DEMO_SETUP,  # <-- use data URI
+        SRC_DEMO_SETUP,
         "Demo Setup",
         "Streamlit WebGUI for ROS — control & monitor robotics via a browser."
     )
-    st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tile-note">Opens in a new tab</div>', unsafe_allow_html=True)
 
 with c2:
     tile(
         "hands-on",
         LINK_HANDS_ON,
-        SRC_HANDS_ON,  # <-- use data URI
+        SRC_HANDS_ON,
         "Hands-on Widget",
         "YOLO11 live object detection — upload media and see detections instantly."
     )
-    st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tile-note">Opens in a new tab</div>', unsafe_allow_html=True)
 
 with c3:
     tile(
         "adaptation",
         LINK_ADAPTATION,
-        SRC_ADAPTATION,  # <-- use data URI
+        SRC_ADAPTATION,
         "Adaptation Theme",
         "LLM-powered chatbot blueprint — adapt as a coding/robotics helper."
     )
-    st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tile-note">Opens in a new tab</div>', unsafe_allow_html=True)
+
 
 
 
