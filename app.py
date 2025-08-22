@@ -2,7 +2,18 @@
 import streamlit as st
 import pandas as pd
 from datetime import date
-import time   # NEW import for caching demo
+import time
+from pathlib import Path
+import base64
+
+def _img_data_uri(path: str) -> str:
+    p = Path(path)
+    if not p.exists():
+        st.warning(f"Image not found: {path} (cwd: {Path.cwd()})")
+        return ""  # graceful fallback so your page still loads
+    b64 = base64.b64encode(p.read_bytes()).decode("utf-8")
+    return f"data:image/png;base64,{b64}"
+
 
 st.set_page_config(page_title="Streamlit for Educators", layout="wide")
 
@@ -41,10 +52,15 @@ LINK_DEMO_SETUP = "https://just-merwan.medium.com/how-to-use-streamlit-webgui-wi
 LINK_HANDS_ON   = "https://www.ultralytics.com/blog/run-an-interactive-ai-app-with-streamlit-and-ultralytics-yolo11"
 LINK_ADAPTATION = "https://discuss.streamlit.io/t/how-to-build-an-llm-powered-chatbot-with-streamlit/42916"
 
-# Local thumbnails (place these in your repo under images/)
+# Local thumbnails (committed to your repo under images/)
 IMG_DEMO_SETUP = "images/demo_setup.png"
 IMG_HANDS_ON   = "images/hands_on_widget.png"
 IMG_ADAPTATION = "images/adaptation_theme.png"
+
+# Convert local images → base64 data URIs (so they always render)
+SRC_DEMO_SETUP = _img_data_uri(IMG_DEMO_SETUP)
+SRC_HANDS_ON   = _img_data_uri(IMG_HANDS_ON)
+SRC_ADAPTATION = _img_data_uri(IMG_ADAPTATION)
 
 # Simple CSS for drop-shadow image cards with hover effect
 st.markdown("""
@@ -64,12 +80,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-def tile(html_id: str, href: str, img: str, title: str, subtitle: str):
+def tile(html_id: str, href: str, img_src: str, title: str, subtitle: str):
     st.markdown(
         f"""
         <div class="tile-wrap" id="{html_id}">
           <a class="tile" href="{href}" target="_blank" rel="noopener noreferrer">
-            <img src="{img}" alt="{title}">
+            <img src="{img_src}" alt="{title}">
             <h4>{title}</h4>
             <p>{subtitle}</p>
           </a>
@@ -83,7 +99,7 @@ with c1:
     tile(
         "demo-setup",
         LINK_DEMO_SETUP,
-        IMG_DEMO_SETUP,
+        SRC_DEMO_SETUP,  # <-- use data URI
         "Demo Setup",
         "Streamlit WebGUI for ROS — control & monitor robotics via a browser."
     )
@@ -93,7 +109,7 @@ with c2:
     tile(
         "hands-on",
         LINK_HANDS_ON,
-        IMG_HANDS_ON,
+        SRC_HANDS_ON,  # <-- use data URI
         "Hands-on Widget",
         "YOLO11 live object detection — upload media and see detections instantly."
     )
@@ -103,11 +119,12 @@ with c3:
     tile(
         "adaptation",
         LINK_ADAPTATION,
-        IMG_ADAPTATION,
+        SRC_ADAPTATION,  # <-- use data URI
         "Adaptation Theme",
         "LLM-powered chatbot blueprint — adapt as a coding/robotics helper."
     )
     st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+
 
 
 
