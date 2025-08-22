@@ -36,17 +36,17 @@ Snowflake. (2022, March 2). *Snowflake announces intent to acquire Streamlit to 
 # ────────────────────────────────────────────────────────────────────────────────
 st.header("2) Popular apps & showcases built with Streamlit")
 
-# -- URLs to open (new tab) --
+# Target URLs (open in new tab)
 LINK_DEMO_SETUP = "https://just-merwan.medium.com/how-to-use-streamlit-webgui-with-ros-f7a17f966552"
-LINK_HANDS_ON = "https://www.ultralytics.com/blog/run-an-interactive-ai-app-with-streamlit-and-ultralytics-yolo11"
+LINK_HANDS_ON   = "https://www.ultralytics.com/blog/run-an-interactive-ai-app-with-streamlit-and-ultralytics-yolo11"
 LINK_ADAPTATION = "https://discuss.streamlit.io/t/how-to-build-an-llm-powered-chatbot-with-streamlit/42916"
 
-# -- Thumbnail images (replace with your own if preferred) --
-IMG_DEMO_SETUP = "https://miro.medium.com/v2/resize:fit:828/format:webp/1*J2Vg1QmXj1r3mW7vn8IY6A.png"
-IMG_HANDS_ON = "https://assets.ultralytics.com/blog/yolo-streamlit/cover.jpg"
-IMG_ADAPTATION = "https://user-images.githubusercontent.com/56193069/229269090-9f3a1b3e-983f-4b7a-8d64-5c0b7f1b0c24.png"
+# Local thumbnails (place these in your repo under images/)
+IMG_DEMO_SETUP = "images/demo_setup.png"
+IMG_HANDS_ON   = "images/hands_on_widget.png"
+IMG_ADAPTATION = "images/adaptation_theme.png"
 
-# -- Simple CSS for drop-shadow image cards with hover effect --
+# Simple CSS for drop-shadow image cards with hover effect
 st.markdown("""
 <style>
 .tile-wrap { text-align:center; }
@@ -54,6 +54,7 @@ st.markdown("""
   display:block; text-decoration:none; color:inherit; border-radius:18px; overflow:hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   transition: transform 160ms ease, box-shadow 160ms ease;
+  background: white;
 }
 .tile:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
 .tile img { width:100%; height:180px; object-fit:cover; display:block; }
@@ -107,6 +108,7 @@ with c3:
         "LLM-powered chatbot blueprint — adapt as a coding/robotics helper."
     )
     st.markdown('<div class="caption">Opens in a new tab</div>', unsafe_allow_html=True)
+
 
 
 # ────────────────────────────────────────────────────────────────────────────────
